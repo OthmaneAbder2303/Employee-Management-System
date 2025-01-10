@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MasterService } from '../services/master.service';
+import { MasterService } from '../../services/master.service';
 import { APIResponseModel, IDesignation } from '../../model/interface/role';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -27,7 +27,7 @@ export class DesignationComponent implements OnInit{
       alert("API error / Network Down")
       this.isLoader = false;
     });
-    
+
   }
 
 

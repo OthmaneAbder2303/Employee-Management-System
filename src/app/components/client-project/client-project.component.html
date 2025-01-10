@@ -48,7 +48,7 @@
                 <form #form="ngForm">
                     <div class="row">
                         <div class="col-6">
-                            <label for="">Person Name</label>
+                            <label for="">Project Name</label>
                             <input type="text" #personName="ngModel" required name="contactPersonName" [(ngModel)]="clientObj.contactPersonName" class="form-control">
                             <div class="text-danger">
                                 @if (personName.touched) {
@@ -59,40 +59,48 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="">Company Name</label>
-                            <input type="text" name="companyName" [(ngModel)]="clientObj.companyName" class="form-control">
+                            <label for="">Start Date</label>
+                            <input type="text" name="companyName" class="form-control">
                         </div>
                         <div class="col-6">
-                            <label for="">Address</label>
+                            <label for="">Expected End Date</label>
                             <textarea class="form-control" name="address"></textarea>
                         </div>
                         <div class="col-6">
-                            <label for="">City</label>
-                            <input type="text" name="city" [(ngModel)]="clientObj.city" class="form-control">
+                            <label for="">Contact Name</label>
+                            <input type="text" name="city" class="form-control">
                         </div>
                         <div class="col-6">
-                            <label for="">Pin Code</label>
-                            <input type="text" name="pincode" [(ngModel)]="clientObj.pincode" class="form-control">
+                            <label for="">Contact Mobile</label>
+                            <input type="text" name="pincode" class="form-control">
                         </div>
                         <div class="col-6">
-                            <label for="">State</label>
-                            <input type="text" name="state" [(ngModel)]="clientObj.state" class="form-control">
+                            <label for="">Contact Email</label>
+                            <input type="text" name="state" class="form-control">
                         </div>
                         <div class="col-6">
-                            <label for="">Employee Strength</label>
-                            <input type="text" name="employeeStrength" [(ngModel)]="clientObj.employeeStrength" class="form-control">
+                            <label for="">Total Employee Count</label>
+                            <input type="text" name="employeeStrength" class="form-control">
                         </div>
                         <div class="col-6">
-                            <label for="">Contact Number</label>
-                            <input type="text" name="contactNo" [(ngModel)]="clientObj.contactNo" class="form-control" pattern="^+212[0-9]{9}" title="Number Format +212***********"> <br><br>
+                            <label for="">Project Costing</label>
+                            <input type="text" name="contactNo" class="form-control" pattern="^+212[0-9]{9}" title="Number Format +212***********"> <br><br>
                         </div>
                         <div class="col-6">
-                            <label for="">gst Number</label>
-                            <input type="text" name="gstNo" [(ngModel)]="clientObj.gstNo" class="form-control">
+                            <label for="">Project Description</label>
+                            <input type="text" name="gstNo" class="form-control">
                         </div>
                         <div class="col-6">
-                            <label for="">reg Number</label>
-                            <input type="text" name="regNo" [(ngModel)]="clientObj.regNo" class="form-control">
+                            <label for="">Project Client</label>
+                            <select class="form-control">
+                                <option value="">Select Client</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Lead By</label>
+                            <select class="form-control">
+                                <option value="">Select Employee</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
