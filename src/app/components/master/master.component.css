@@ -1,0 +1,42 @@
+/* Center the buttons */
+.text-center {
+    text-align: center;
+  }
+  
+  /* Button styles */
+  .tab-button {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Default button style */
+  .tab-button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+  }
+  
+  /* Active button style */
+  .active-tab {
+    background-color: #28a745; /* Bootstrap success color */
+    color: white;
+  }
+  
+  /* Add spacing between content sections */
+  .pt-4 {
+    padding-top: 1.5rem !important;
+  }
+  
+  /* Content styles */
+  .app-roles, .app-designation {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
