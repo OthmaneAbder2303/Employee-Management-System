@@ -1,8 +1,10 @@
+<p>{{</p>
+
 <div class="row">
     <div class="col-8">
         <div class="card">
             <div class="card-header bg-success">
-                Client List - {{currentDate | date:'dd-MM-YYYY'}}
+                Client List - {{currentDate | date:'dd-MM-YY'}}
             </div>
             <div class="card-body">
                 <div class="row">
@@ -97,10 +99,10 @@
                     </div>
                     <div class="row">
                         <div class="col-6 text-center pt-1">
-                            <button class="btn btn-secondary">Reset</button>
+                            <button type="button" class="btn btn-secondary" (click)="onResetForm()">Reset</button>
                         </div>
                         <div class="col-6 text-center pt-1">
-                            <button class="btn btn-success" [disabled]="!form.valid" (click)="onSaveClient()">
+                            <button type="submit" class="btn btn-success" [disabled]="!form.valid" (click)="onSaveClient()">
                                 {{clientObj.clientId == 0 ? 'Save' : 'Update'}}
                             </button>
                         </div>

@@ -7,7 +7,7 @@ import { ClientProjectComponent } from './components/client-project/client-proje
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RolesComponent, DesignationComponent, MasterComponent, ClientProjectComponent, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

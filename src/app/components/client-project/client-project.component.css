@@ -1,0 +1,115 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  /* Card Styling */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .card-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .bg-success {
+    background-color: #28a745 !important;
+  }
+  
+  /* Table Styling */
+  .table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .table th,
+  .table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .btn-primary,
+  .btn-danger {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+  
+  /* Form Styling */
+  form label {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  form .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  form .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  }
+  
+  .text-danger span {
+    font-size: 0.8rem;
+    color: red;
+  }
+  
+  button {
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Reset & Save/Update Buttons */
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .col-6 {
+      width: 100%;
+    }
+  
+    .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .card {
+      margin: 10px 0;
+    }
+  }
+  

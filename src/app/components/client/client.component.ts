@@ -3,66 +3,85 @@ import { Client } from '../../model/class/Client';
 import { FormsModule } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
 import { APIResponseModel } from '../../model/interface/role';
-import { DatePipe, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client',
-  imports: [FormsModule, UpperCasePipe, DatePipe],
+  imports: [FormsModule, UpperCasePipe, DatePipe, JsonPipe, AsyncPipe],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css'
 })
-export class ClientComponent implements OnInit{
-  currentDate : Date = new Date();
 
-  clientObj : Client = new Client();
-  clientList : Client[] = [];
+export class ClientComponent implements OnInit {
+  currentDate: Date = new Date();
 
-  clientService = inject(ClientService)
+  clientObj: Client = new Client();
+  clientList: Client[] = [];
+  userList$ : Observable<any> = new Observable<any>
+
+  clientService = inject(ClientService);
 
   ngOnInit(): void {
-    //throw new Error('Method not implemented.');
     this.loadClient();
+    this.userList$ = this.clientService.getAllUser();
   }
 
-  loadClient() : void {
-    this.clientService.getAllClients().subscribe((res:APIResponseModel) => {
-      this.clientList = res.data;
-    })
-  }
-
-  onSaveClient() : void {
-    debugger;
-    this.clientService.addUpdate(this.clientObj).subscribe((res:APIResponseModel) => {
-      if(res.result) {
-        alert("Client Created Succes");
-        this.loadClient();
-        this.clientObj = new Client();
+  loadClient(): void {
+    this.clientService.getAllClients().subscribe({
+      next: (res: APIResponseModel) => {
+        this.clientList = res.data;
+      },
+      error: (err) => {
+        console.error('Error fetching clients:', err);
+        alert('Failed to load clients. Please try again later.');
       }
-      else {
-        alert(res.message);
-      }
-    })
+    });
   }
 
-  onEdit(data:Client) : void {
-    this.clientObj = data;
-  }
-
-  onDelete(id:number) : void {
-    const isDelete = confirm("Are you sure want to delete");
-    if(isDelete) {
-      this.clientService.deleteClientById(id).subscribe((res:APIResponseModel) => {
-        if(res.result) {
-          alert("Client Deleted Succes");
+  onSaveClient(): void {
+    this.clientService.addUpdate(this.clientObj).subscribe({
+      next: (res: APIResponseModel) => {
+        if (res.result) {
+          alert('Client saved successfully.');
           this.loadClient();
-          this.clientObj = new Client();
-        }
-        else {
+          this.onResetForm();
+        } else {
           alert(res.message);
         }
-      })
+      },
+      error: (err) => {
+        console.error('Error saving client:', err);
+        alert('Failed to save the client. Please try again.');
+      }
+    });
+  }
+
+  onEdit(data: Client): void {
+    this.clientObj = { ...data };
+  }
+
+  onDelete(id: number): void {
+    const isDelete = confirm('Are you sure you want to delete this client?');
+    if (isDelete) {
+      this.clientService.deleteClientById(id).subscribe({
+        next: (res: APIResponseModel) => {
+          if (res.result) {
+            alert('Client deleted successfully.');
+            this.loadClient();
+          } else {
+            alert(res.message);
+          }
+        },
+        error: (err) => {
+          console.error('Error deleting client:', err);
+          alert('Failed to delete the client. Please try again.');
+        }
+      });
     }
   }
 
+  onResetForm(): void {
+    this.clientObj = new Client();
+  }
 }
-

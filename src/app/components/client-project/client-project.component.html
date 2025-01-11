@@ -1,145 +1,125 @@
 <div class="row">
+    <!-- Client List -->
     <div class="col-8">
         <div class="card">
-            <div class="card-header bg-success">
+            <div class="card-header bg-success text-white">
                 Client List
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table table-bordered">
-                            <thead>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Sr No</th>
+                                <th>Company Name</th>
+                                <th>Person Name</th>
+                                <th>Contact No</th>
+                                <th>City</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of clientList; track $index) {
                                 <tr>
-                                    <th>Sr No</th>
-                                    <th>Company Name</th>
-                                    <th>Person Name</th>
-                                    <th>Contact No</th>
-                                    <th>City</th>
-                                    <th>Action</th>
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{item.companyName | uppercase}}</td>
+                                    <td>{{item.contactPersonName}}</td>
+                                    <td>{{item.contactNo}}</td>
+                                    <td>{{item.city}}</td>
+                                    <td>
+
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @for (item of clientList; track $index) {
-                                    <tr>
-                                        <td>{{$index+1}}</td>
-                                        <td>{{item.companyName}}</td>
-                                        <td>{{item.contactPersonName}}</td>
-                                        <td>{{item.contactNo}}</td>
-                                        <td>{{item.city}}</td>
-                                        <td>
-                                            
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </div>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-3">
+
+    <!-- New Client/Project Form -->
+    <div class="col-4">
         <div class="card">
-            <div class="card-header bg-success">
-                New Client
+            <div class="card-header bg-success text-white">
+                New Project
             </div>
             <div class="card-body">
                 <form [formGroup]="projectForm">
                     <div class="row">
-                        <div class="col-6">
-                            <label for="">Project Name</label>
+                        <div class="col-12 mb-3">
+                            <label>Project Name</label>
                             <input type="text" formControlName="projectName" class="form-control">
-                            <div class="text-danger">
-                                @if (projectForm.controls['projectName'].touched) {
-                                    @if(projectForm.controls['projectName'].errors?.['required']) {
-                                        <span>This is Required</span>
-                                    }
-                                }
+                            <div class="text-danger" *ngIf="projectForm.controls['projectName'].touched && projectForm.controls['projectName'].errors?.['required']">
+                                Project Name is required.
                             </div>
                         </div>
-                        <div class="col-6">
-                            <label for="">Start Date</label>
+                        <div class="col-6 mb-3">
+                            <label>Start Date</label>
                             <input type="date" formControlName="startDate" class="form-control">
-                            <div class="text-danger">
-                                @if (projectForm.controls['startDate'].touched) {
-                                    @if(projectForm.controls['startDate'].errors?.['required']) {
-                                        <span>This is Required</span>
-                                    }
-                                }
+                            <div class="text-danger" *ngIf="projectForm.controls['startDate'].touched && projectForm.controls['startDate'].errors?.['required']">
+                                Start Date is required.
                             </div>
                         </div>
-                        <div class="col-6">
-                            <label for="">Expected End Date</label>
+                        <div class="col-6 mb-3">
+                            <label>End Date</label>
                             <input type="date" formControlName="expectedEndDate" class="form-control">
                         </div>
-                        <div class="col-6">
-                            <label for="">Contact Name</label>
+                        <div class="col-6 mb-3">
+                            <label>Contact Name</label>
                             <input type="text" formControlName="contactPerson" class="form-control">
                         </div>
-                        <div class="col-6">
-                            <label for="">Contact Mobile</label>
+                        <div class="col-6 mb-3">
+                            <label>Contact Mobile</label>
                             <input type="tel" formControlName="contactPersoncontactNo" class="form-control">
                         </div>
-                        <div class="col-6">
-                            <label for="">Contact Email</label>
+                        <div class="col-6 mb-3">
+                            <label>Contact Email</label>
                             <input type="email" formControlName="contactPersonEmailId" class="form-control">
                         </div>
-                        <div class="col-6">
-                            <label for="">Total Employee Count</label>
+                        <div class="col-6 mb-3">
+                            <label>Total Employee Count</label>
                             <input type="text" formControlName="totalEmpWorking" class="form-control">
                         </div>
-                        <div class="col-6">
-                            <label for="">Project Costing</label>
-                            <input type="text" formControlName="projectCost" class="form-control" pattern="^+212[0-9]{9}" title="Number Format +212***********"> <br><br>
+                        <div class="col-6 mb-3">
+                            <label>Project Costing</label>
+                            <input type="text" formControlName="projectCost" class="form-control">
                         </div>
-                        <div class="col-6">
-                            <label for="">Project Description</label>
-                            <textarea class="form-control" formControlName="projectDetails"></textarea>
+                        <div class="col-12 mb-3">
+                            <label>Project Description</label>
+                            <textarea class="form-control" formControlName="projectDetails" rows="3"></textarea>
                         </div>
-                        <div class="col-6">
-                            <label for="">Select Client</label>
+                        <div class="col-12 mb-3">
+                            <label>Select Client</label>
                             <select formControlName="clientId" class="form-control">
                                 <option value="">Select Client</option>
                                 @for (item of clientList; track $index) {
-                                    <option [value]="item.clientId"> {{item.companyName}} </option>
+                                    <option [value]="item.clientId">{{item.companyName}}</option>
                                 }
                             </select>
-                            <div class="text-danger">
-                                @if (projectForm.controls['clientId'].touched) {
-                                    @if(projectForm.controls['clientId'].errors?.['required']) {
-                                        <span>This is Required</span>
-                                    }
-                                }
-                            </div>
                         </div>
-                        <div class="col-6">
-                            <label for="">Lead By</label>
+                        <div class="col-12 mb-3">
+                            <label>Lead By</label>
                             <select formControlName="leadByEmpId" class="form-control">
                                 <option value="">Select Employee</option>
                                 @for (item of employeeList; track $index) {
-                                    <option [value]="item.empId"> {{item.empName}} - {{item.empCode}}</option>
+                                    <option [value]="item.empId">{{item.empName}} - {{item.empCode}}</option>
                                 }
                             </select>
-                            <div class="text-danger">
-                                @if (projectForm.controls['leadByEmpId'].touched) {
-                                    @if(projectForm.controls['leadByEmpId'].errors?.['required']) {
-                                        <span>This is Required</span>
-                                    }
-                                }
-                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 text-center pt-1">
-                            <button class="btn btn-secondary">Reset</button>
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-secondary" (click)="onResetForm()">Reset</button>
                         </div>
-                        <div class="col-6 text-center pt-1">
-                            <button class="btn btn-success" [disabled]="projectForm.invalid" (click)="onSaveProject()">
+                        <div class="col-6 text-center">
+                            <button type="submit" class="btn btn-success" [disabled]="projectForm.invalid" (click)="onSaveProject()">
                                 Save
                             </button>
                         </div>
                     </div>
                 </form>
+            </div>
         </div>
     </div>
 </div>

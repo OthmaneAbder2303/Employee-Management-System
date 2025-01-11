@@ -13,22 +13,26 @@ export class ClientService {
   constructor(private http:HttpClient) { }
 
   getAllClients() : Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>(environment.API_URL + 'GetAllClients')
+    return this.http.get<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllClients')
+  }
+
+  getAllUser() : Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>('https://jsonplaceholder.typicode.com/users')
   }
 
   getAllEmployee() : Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>(environment.API_URL + 'GetAllEmployee')
+    return this.http.get<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllEmployee')
   }
 
   addUpdate(obj:Client):Observable<APIResponseModel> {
-    return this.http.post<APIResponseModel>(environment.API_URL + 'AddUpdateClient', obj)
+    return this.http.post<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/AddUpdateClient', obj)
   }
 
   deleteClientById(id:number):Observable<APIResponseModel> {
-    return this.http.delete<APIResponseModel>(environment.API_URL + 'DeleteClientByClientId?clientId=' + id)
+    return this.http.delete<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/DeleteClientByClientId?clientId=' + id)
   }
 
   addClientProjectUpdate(obj:Client):Observable<APIResponseModel> {
-    return this.http.post<APIResponseModel>(environment.API_URL + 'AddUpdateClientProject', obj)
+    return this.http.post<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/AddUpdateClientProject', obj)
   }
 }

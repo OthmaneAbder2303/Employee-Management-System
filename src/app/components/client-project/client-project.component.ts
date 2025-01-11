@@ -3,10 +3,11 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ClientService } from '../../services/client.service';
 import { APIResponseModel, Employee } from '../../model/interface/role';
 import { Client } from '../../model/class/Client';
+import { CommonModule, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-client-project',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, UpperCasePipe],
   templateUrl: './client-project.component.html',
   styleUrl: './client-project.component.css'
 })
@@ -60,6 +61,24 @@ export class ClientProjectComponent implements OnInit {
       else {
         alert(res.message);
       }
+    })
+  }
+
+  onResetForm(): void {
+    this.projectForm = new FormGroup({
+      clientProjectId : new FormControl(''),
+      projectName : new FormControl('', Validators.required),
+      startDate : new FormControl('', Validators.required),
+      expectedEndDate : new FormControl(''),
+      leadByEmpId : new FormControl('', Validators.required),
+      completedDate : new FormControl(''),
+      contactPerson : new FormControl(''),
+      contactPersoncontactNo : new FormControl(''),
+      totalEmpWorking : new FormControl(''),
+      projectCost : new FormControl(''),
+      projectDetails : new FormControl(''),
+      contactPersonEmailId : new FormControl(''),
+      clientId : new FormControl('', Validators.required)
     })
   }
 
