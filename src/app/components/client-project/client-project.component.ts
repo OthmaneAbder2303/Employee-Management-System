@@ -4,6 +4,7 @@ import { ClientService } from '../../services/client.service';
 import { APIResponseModel, Employee } from '../../model/interface/role';
 import { Client } from '../../model/class/Client';
 import { CommonModule, UpperCasePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-client-project',
@@ -12,6 +13,8 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
   styleUrl: './client-project.component.css'
 })
 export class ClientProjectComponent implements OnInit {
+
+  constructor(private snackBar: MatSnackBar) {}
 
   projectForm : FormGroup = new FormGroup({
     clientProjectId : new FormControl(''),
@@ -40,46 +43,49 @@ export class ClientProjectComponent implements OnInit {
   }
 
   getAllEmployee() {
-    this.clientService.getAllEmployee().subscribe((res:APIResponseModel) => {
-      this.employeeList = res.data
-    })
+    this.clientService.getAllEmployee().subscribe({
+      next: (res: APIResponseModel) => {
+        this.employeeList = res.data;
+      },
+      error: (err) => {
+        console.error('Error fetching employees:', err);
+        alert('Failed to load employee data.');
+      }
+    });
   }
-
+  
   getAllClient() {
-    this.clientService.getAllClients().subscribe((res:APIResponseModel) => {
-      this.clientList = res.data
-    })
+    this.clientService.getAllClients().subscribe({
+      next: (res: APIResponseModel) => {
+        this.clientList = res.data;
+      },
+      error: (err) => {
+        console.error('Error fetching clients:', err);
+        alert('Failed to load client data.');
+      }
+    });
   }
+  
 
-  onSaveProject() : void {
+  onSaveProject(): void {
     const formValue = this.projectForm.value;
-    debugger;
-    this.clientService.addClientProjectUpdate(formValue).subscribe((res:APIResponseModel) => {
-      if(res.result) {
-        alert("Project Created Succes");
+    this.clientService.addClientProjectUpdate(formValue).subscribe({
+      next: (res: APIResponseModel) => {
+        if (res.result) {
+          this.snackBar.open('Project Created Successfully', 'Close', { duration: 3000 });
+        } else {
+          this.snackBar.open(res.message, 'Close', { duration: 3000 });
+        }
+      },
+      error: (err) => {
+        console.error('Error saving project:', err);
+        this.snackBar.open('Failed to create project.', 'Close', { duration: 3000 });
       }
-      else {
-        alert(res.message);
-      }
-    })
+    });
   }
 
   onResetForm(): void {
-    this.projectForm = new FormGroup({
-      clientProjectId : new FormControl(''),
-      projectName : new FormControl('', Validators.required),
-      startDate : new FormControl('', Validators.required),
-      expectedEndDate : new FormControl(''),
-      leadByEmpId : new FormControl('', Validators.required),
-      completedDate : new FormControl(''),
-      contactPerson : new FormControl(''),
-      contactPersoncontactNo : new FormControl(''),
-      totalEmpWorking : new FormControl(''),
-      projectCost : new FormControl(''),
-      projectDetails : new FormControl(''),
-      contactPersonEmailId : new FormControl(''),
-      clientId : new FormControl('', Validators.required)
-    })
+    this.projectForm.reset();
   }
 
 }
