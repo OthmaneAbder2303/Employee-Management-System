@@ -2,7 +2,7 @@
     <div class="col-8">
         <div class="card">
             <div class="card-header bg-success">
-                Client List
+                Client List - {{currentDate}}
             </div>
             <div class="card-body">
                 <div class="row">
@@ -22,7 +22,7 @@
                                 @for (item of clientList; track $index) {
                                     <tr>
                                         <td>{{$index+1}}</td>
-                                        <td>{{item.companyName}}</td>
+                                        <td>{{item.companyName | uppercase}}</td>
                                         <td>{{item.contactPersonName}}</td>
                                         <td>{{item.contactNo}}</td>
                                         <td>{{item.city}}</td>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-6">
                             <label for="">Contact Number</label>
-                            <input type="text" name="contactNo" [(ngModel)]="clientObj.contactNo" class="form-control" pattern="^+212[0-9]{9}" title="Number Format +212***********"> <br><br>
+                            <input type="tel" name="contactNo" [(ngModel)]="clientObj.contactNo" class="form-control" pattern="^+212[0-9]{9}" title="Number Format +212***********"> <br><br>
                         </div>
                         <div class="col-6">
                             <label for="">gst Number</label>

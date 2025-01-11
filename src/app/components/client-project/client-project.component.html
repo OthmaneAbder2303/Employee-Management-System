@@ -27,8 +27,7 @@
                                         <td>{{item.contactNo}}</td>
                                         <td>{{item.city}}</td>
                                         <td>
-                                            <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
-                                            <button class="btn btn-danger" (click)="onDelete(item.clientId)">Delete</button>
+                                            
                                         </td>
                                     </tr>
                                 }
@@ -45,14 +44,14 @@
                 New Client
             </div>
             <div class="card-body">
-                <form #form="ngForm">
+                <form [formGroup]="projectForm">
                     <div class="row">
                         <div class="col-6">
                             <label for="">Project Name</label>
-                            <input type="text" #personName="ngModel" required name="contactPersonName" [(ngModel)]="clientObj.contactPersonName" class="form-control">
+                            <input type="text" formControlName="projectName" class="form-control">
                             <div class="text-danger">
-                                @if (personName.touched) {
-                                    @if (personName?.errors?.['required']) {
+                                @if (projectForm.controls['projectName'].touched) {
+                                    @if(projectForm.controls['projectName'].errors?.['required']) {
                                         <span>This is Required</span>
                                     }
                                 }
@@ -60,47 +59,74 @@
                         </div>
                         <div class="col-6">
                             <label for="">Start Date</label>
-                            <input type="text" name="companyName" class="form-control">
+                            <input type="date" formControlName="startDate" class="form-control">
+                            <div class="text-danger">
+                                @if (projectForm.controls['startDate'].touched) {
+                                    @if(projectForm.controls['startDate'].errors?.['required']) {
+                                        <span>This is Required</span>
+                                    }
+                                }
+                            </div>
                         </div>
                         <div class="col-6">
                             <label for="">Expected End Date</label>
-                            <textarea class="form-control" name="address"></textarea>
+                            <input type="date" formControlName="expectedEndDate" class="form-control">
                         </div>
                         <div class="col-6">
                             <label for="">Contact Name</label>
-                            <input type="text" name="city" class="form-control">
+                            <input type="text" formControlName="contactPerson" class="form-control">
                         </div>
                         <div class="col-6">
                             <label for="">Contact Mobile</label>
-                            <input type="text" name="pincode" class="form-control">
+                            <input type="tel" formControlName="contactPersoncontactNo" class="form-control">
                         </div>
                         <div class="col-6">
                             <label for="">Contact Email</label>
-                            <input type="text" name="state" class="form-control">
+                            <input type="email" formControlName="contactPersonEmailId" class="form-control">
                         </div>
                         <div class="col-6">
                             <label for="">Total Employee Count</label>
-                            <input type="text" name="employeeStrength" class="form-control">
+                            <input type="text" formControlName="totalEmpWorking" class="form-control">
                         </div>
                         <div class="col-6">
                             <label for="">Project Costing</label>
-                            <input type="text" name="contactNo" class="form-control" pattern="^+212[0-9]{9}" title="Number Format +212***********"> <br><br>
+                            <input type="text" formControlName="projectCost" class="form-control" pattern="^+212[0-9]{9}" title="Number Format +212***********"> <br><br>
                         </div>
                         <div class="col-6">
                             <label for="">Project Description</label>
-                            <input type="text" name="gstNo" class="form-control">
+                            <textarea class="form-control" formControlName="projectDetails"></textarea>
                         </div>
                         <div class="col-6">
-                            <label for="">Project Client</label>
-                            <select class="form-control">
+                            <label for="">Select Client</label>
+                            <select formControlName="clientId" class="form-control">
                                 <option value="">Select Client</option>
+                                @for (item of clientList; track $index) {
+                                    <option [value]="item.clientId"> {{item.companyName}} </option>
+                                }
                             </select>
+                            <div class="text-danger">
+                                @if (projectForm.controls['clientId'].touched) {
+                                    @if(projectForm.controls['clientId'].errors?.['required']) {
+                                        <span>This is Required</span>
+                                    }
+                                }
+                            </div>
                         </div>
                         <div class="col-6">
                             <label for="">Lead By</label>
-                            <select class="form-control">
+                            <select formControlName="leadByEmpId" class="form-control">
                                 <option value="">Select Employee</option>
+                                @for (item of employeeList; track $index) {
+                                    <option [value]="item.empId"> {{item.empName}} - {{item.empCode}}</option>
+                                }
                             </select>
+                            <div class="text-danger">
+                                @if (projectForm.controls['leadByEmpId'].touched) {
+                                    @if(projectForm.controls['leadByEmpId'].errors?.['required']) {
+                                        <span>This is Required</span>
+                                    }
+                                }
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -108,8 +134,8 @@
                             <button class="btn btn-secondary">Reset</button>
                         </div>
                         <div class="col-6 text-center pt-1">
-                            <button class="btn btn-success" [disabled]="!form.valid" (click)="onSaveClient()">
-                                {{clientObj.clientId == 0 ? 'Save' : 'Update'}}
+                            <button class="btn btn-success" [disabled]="projectForm.invalid" (click)="onSaveProject()">
+                                Save
                             </button>
                         </div>
                     </div>
