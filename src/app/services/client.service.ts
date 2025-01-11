@@ -20,6 +20,10 @@ export class ClientService {
     return this.http.get<APIResponseModel>('https://jsonplaceholder.typicode.com/users')
   }
 
+  getAllClientProject() : Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllClientProjects')
+  }
+
   getAllEmployee() : Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllEmployee')
   }
