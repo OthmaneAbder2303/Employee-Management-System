@@ -82,8 +82,4 @@ ng test
 ```
 
 ## Additional Resources
-For more information on how to use the Angular CLI, visit the official Angular CLI Documentation.
-
-# Author: Othmane Abderrazik
-GitHub: https://github.com/OthmaneAbder23
 
