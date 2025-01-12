@@ -1,8 +1,18 @@
+<!--
+<p>{{clientObj | json}}</p>
+<ul>
+    @for(item of userList$ | async; track $index) {
+        <li>{{item.username}}</li>
+    }
+</ul>
+-->
+<app-alert [alertType]="'Succes'" [message]="'Hi From Client Page'"></app-alert>
+
 <div class="row">
     <div class="col-8">
         <div class="card">
             <div class="card-header bg-success">
-                Client List - {{currentDate | date:'dd-MM-YY'}}
+                Client List - {{currentDate | date:'dd-MM-YYYY'}}
             </div>
             <div class="card-body">
                 <div class="row">
@@ -42,7 +52,7 @@
     <div class="col-3">
         <div class="card">
             <div class="card-header bg-success">
-                New Client
+                {{clientObj.clientId === 0 ? 'New Client' : 'Edit Client'}}
             </div>
             <div class="card-body">
                 <form #form="ngForm">

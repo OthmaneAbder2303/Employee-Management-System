@@ -1,67 +1,197 @@
-.wrapper .form-box.register .animation {
-    transform: translateX(120%);
-    opacity: 0;
-    filter: blur (10px);
-    transition: .7s ease; 
-    transition-delay: calc(.1s * var(--j));
+:root {
+    --green: #28a745;
+    --blue: #007bff;
+    --white: #fff;
 }
 
-.wrapper.active .form-box.register animation {
-    transform: translatex(®);
-    opacity: 1;
-    filter: blur(0);
-    transition-delay: calc(.1s * var(--i));
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f0f0;
+    overflow: hidden;
+    color: var(--blue); /* Default text color */
 }
-
-.wrapper .info-text.register {
-    left: 0;
-    text-align: left;
-    padding: 0 150px 60px 40px; 
-    pointer-events: none;
-}
-
-.wrapper.active .info-text.register {
-    pointer-events: auto;
-}
-
-.wrapper .info-text.register animation {
-    transform: translateX(-120%);
-    opacity: 0;
-    filter: blur (10px); 
-    transition: .7s ease; 
-    transition-delay: calc(.1s * var(--j));
-}
-
-.wrapper.active .info-text.register .animation {
-    transform: translateX(0);
-    opacity: 1; 
-    filter: blur(0);
-    transition-delay: calc(.1s * var(--i));
-}
-
 
 .wrapper {
     position: relative;
-    width: 750px; height: 450px;
+    width: 750px;
+    height: 450px;
     background: var(--white);
-    border: 2px solid var (--black); 
-    border-radius:
-    10px;
-    box-shadow:
-    0 0 20px var (--black);
+    border: 2px solid var(--blue);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
 }
 
-.wrapper .form-box {
+.form-box {
     position: absolute;
-    top: 0; width:
-    50%;
-    height: 100%; display: flex;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
     justify-content: center;
     flex-direction: column;
+    transition: 0.7s ease;
+    padding: 0 40px;
 }
 
-.wrapper .form-box.Login {
-    left: 0;
-    padding: 0 60px 0 40px;
+.form-box h2 {
+    text-align: center; /* Center the title */
+    font-size: 24px; 
+    color: var(--blue);
+    margin-bottom: 30px; /* Adds space below the title */
 }
+
+.info-text.register {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--blue);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 0 40px;
+    transition: 0.7s ease;
+}
+
+.info-text h1, .info-text p {
+    opacity: 0;
+    transform: translateX(100%);
+    animation: fadeIn 0.7s ease forwards;
+}
+
+.info-text h1 {
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.info-text p {
+    animation-delay: calc(0.2s * var(--i));
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-50%);
+    animation: fadeInLeft 0.7s ease forwards;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background: #f9f9f9;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.input-box input:focus + label, .input-box input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--blue);
+}
+
+button.btn-animation {
+    width: 100%;
+    padding: 10px;
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    opacity: 0;
+    transform: translateX(-50%);
+    animation: fadeInLeft 0.7s ease forwards;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+button.btn-animation:hover {
+    background: #0056b3;
+}
+
+.linkTxt {
+    margin-top: 10px;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(-50%);
+    animation: fadeInLeft 0.7s ease forwards;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.linkTxt a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.linkTxt a:hover {
+    color: #004085;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.copyright {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: var(--blue);
+    font-size: 14px;
+}
+
+.copyright p {
+    margin: 0;
+    color: var(--green); /* Make the copyright text green */
+}
+
+/* New styles to center the form elements */
+.form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+

@@ -1,21 +1,38 @@
-<form action="#">
+<div class="wrapper">
+    <div class="form-box Login">
+        <h2 class="animation" style="--i: 1;">Login</h2>
+        <form>
+            <div class="input-box animation" style="--i: 2;">
+                <input type="text" [(ngModel)]="loginObj.username" name="username" class="form-control form-control-lg" required placeholder=""/>
+                <label>Username</label>
+                <i class="bx bxs-user"></i>
+            </div>
 
-    <div class="input-box animation" style="--i:1; --j:22">
-        <input type="text" required>
-        <label for="">Username</label>
-        <i class="bx bxs-user"></i>
+            <div class="input-box animation" style="--i: 3;">
+                <input type="password" [(ngModel)]="loginObj.password" name="password" class="form-control form-control-lg" placeholder="" required/>
+                <label>Password</label>
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+
+            <button (click)="onLogin()" type="submit" class="btn-animation animation" style="--i: 4;">Login</button>
+
+            <div class="linkTxt animation" style="--i: 5;">
+                <p>
+                    Don't have an account? <a href="#" class="register-link">Sign Up</a>
+                </p>
+            </div>
+        </form>
     </div>
 
-    <div class="input-box animation" style="--i:2; --j:23">
-        <input type="password" required>
-        <label for="">Password</label>
-        <i class="bx bxs-lock-alt"></i>
+    <div class="info-text register">
+        <h1 class="animation" style="--i: 6;">WELCOME BACK!</h1>
+        <p class="animation" style="--i: 7;">
+            Discover our features and enjoy seamless employee management!
+        </p>
     </div>
 
-    <button type="submit" class="btn-animation" style="--i:3; --j:24"></button>
-    
-    <div class="linkTxt animation" style="--i:5; --j:25">
-        <p>Don't have an account <a href="#" class="register-link"> Sign Up</a></p>
+    <!-- Copyright Section -->
+    <div class="copyright">
+        <p>&copy; EMS. All rights reserved.</p>
     </div>
-
-</form>
+</div>

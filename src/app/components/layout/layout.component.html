@@ -21,10 +21,16 @@
             <a class="nav-link" routerLink="/client-project" routerLinkActive="active">Client Project</a>
           </li>
         </ul>
+
         <form class="d-flex search-bar">
           <input class="form-control me-2" type="text" placeholder="Search">
           <button class="btn btn-search" type="button">Search</button>
         </form>
+
+        <form class="d-flex pt-1">
+          <button class="btn btn-primary" type="button" (click)="onLogoff()">Logoff</button>
+        </form>
+
       </div>
     </div>
   </nav>

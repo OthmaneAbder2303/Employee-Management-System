@@ -1,18 +1,21 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
-import { APIResponseModel, Employee } from '../../model/interface/role';
+import { APIResponseModel, Employee, ClientProject } from '../../model/interface/role';
 import { Client } from '../../model/class/Client';
 import { CommonModule, UpperCasePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlertComponent } from "../../reusableComponent/alert/alert.component";
 
 @Component({
   selector: 'app-client-project',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, UpperCasePipe],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, UpperCasePipe, AlertComponent],
   templateUrl: './client-project.component.html',
   styleUrl: './client-project.component.css'
 })
 export class ClientProjectComponent implements OnInit {
+
+  currentDate:Date = new Date();
 
   constructor(private snackBar: MatSnackBar) {}
 
@@ -35,17 +38,31 @@ export class ClientProjectComponent implements OnInit {
   clientService = inject(ClientService)
   employeeList : Employee[] = []
   clientList : Client[] = []
+  projectList = signal<ClientProject[]>([])
 
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
     this.getAllClient();
     this.getAllEmployee();
+    this.getAllClientProject();
   }
 
   getAllEmployee() {
     this.clientService.getAllEmployee().subscribe({
       next: (res: APIResponseModel) => {
         this.employeeList = res.data;
+      },
+      error: (err) => {
+        console.error('Error fetching employees:', err);
+        alert('Failed to load employee data.');
+      }
+    });
+  }
+
+  getAllClientProject() {
+    this.clientService.getAllClientProject().subscribe({
+      next: (res: APIResponseModel) => {
+        this.projectList.set(res.data);
       },
       error: (err) => {
         console.error('Error fetching employees:', err);

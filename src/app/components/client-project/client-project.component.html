@@ -1,9 +1,11 @@
+<app-alert [alertType]="'Success'" [message]="'Hi From Project Page'"></app-alert>
+
 <div class="row">
     <!-- Client List -->
     <div class="col-8">
         <div class="card">
-            <div class="card-header bg-success text-white">
-                Client List
+            <div class="card-header bg-success">
+                Client List - {{currentDate | date:'dd-MM-YY'}}
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -11,23 +13,24 @@
                         <thead class="bg-light">
                             <tr>
                                 <th>Sr No</th>
-                                <th>Company Name</th>
-                                <th>Person Name</th>
-                                <th>Contact No</th>
-                                <th>City</th>
+                                <th>Client Name</th>
+                                <th>Project Name</th>
+                                <th>Employee Name</th>
+                                <th>Start Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for (item of clientList; track $index) {
+                            @for (item of projectList(); track $index) {
                                 <tr>
                                     <td>{{$index + 1}}</td>
-                                    <td>{{item.companyName | uppercase}}</td>
-                                    <td>{{item.contactPersonName}}</td>
-                                    <td>{{item.contactNo}}</td>
-                                    <td>{{item.city}}</td>
+                                    <td>{{item.clientName}}</td>
+                                    <td>{{item.projectName | uppercase}}</td>
+                                    <td>{{item.empName}}</td>
+                                    <td>{{item.startDate | date:'dd-MM-yyyy'}}</td>
                                     <td>
-
+                                        <button class="btn btn-primary">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
                                     </td>
                                 </tr>
                             }

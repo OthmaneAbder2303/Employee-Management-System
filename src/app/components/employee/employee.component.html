@@ -1,1 +1,91 @@
-<p>employee works!</p>
+<app-alert [alertType]="'Success'" [message]="'Hi From Employee Page'"></app-alert>
+
+<div class="row">
+    <!-- Employee List -->
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                Employee List - {{currentDate | date:'dd-MM-YYYY'}}
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sr No</th>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Email</th>
+                                    <th>Designation</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of employeeList; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{item.empName}}</td>
+                                    <td>{{item.empCode}}</td>
+                                    <td>{{item.empEmailId}}</td>
+                                    <td>{{item.empDesignation}}</td>
+                                    <td>{{item.role}}</td>
+                                    <td>
+                                        <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                                        <button class="btn btn-danger" (click)="onDelete(item.empId)">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Employee Form -->
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header bg-success">
+                {{employeeForm.value.empId === 0 ? 'New Employee' : 'Edit Employee'}}
+            </div>
+            <div class="card-body">
+                <form #form="ngForm">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Employee Name</label>
+                            <input type="text" name="empName" [(ngModel)]="employeeForm.value.empName" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Employee Code</label>
+                            <input type="text" name="empCode" [(ngModel)]="employeeForm.value.empCode" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Email</label>
+                            <input type="email" name="empEmailId" [(ngModel)]="employeeForm.value.empEmailId" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Designation</label>
+                            <input type="text" name="empDesignation" [(ngModel)]="employeeForm.value.empDesignation" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Role</label>
+                            <input type="text" name="role" [(ngModel)]="employeeForm.value.role" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-center pt-1">
+                            <button type="button" class="btn btn-secondary" (click)="onResetForm()">Reset</button>
+                        </div>
+                        <div class="col-6 text-center pt-1">
+                            <button type="submit" class="btn btn-success" [disabled]="!form.valid" (click)="onSaveEmployee()">
+                                {{employeeForm.value.empId === 0 ? 'Save' : 'Update'}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
