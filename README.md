@@ -17,13 +17,52 @@ This project is an **Employee Management System** built with Angular. It is desi
 
 ## Project Structure
 
-Employee-Management-System/ 
-│ ├── src/
-│ ├── app/
-│ │ ├── employee/
-│ │ │ ├── employee.component.ts
-│ │ │ ├── employee.component.html 
-│ │ │ ├── employee.component.css # Employee component CSS │ │ │ └── employee.component.spec.ts # Employee component test file │ │ ├── client/ # Client module │ │ │ ├── client.component.ts # Client component logic │ │ │ ├── client.component.html # Client component HTML │ │ │ ├── client.component.css # Client component CSS │ │ │ └── client.component.spec.ts # Client component test file │ │ ├── project/ # Project module │ │ │ ├── project.component.ts # Project component logic │ │ │ ├── project.component.html # Project component HTML │ │ │ ├── project.component.css # Project component CSS │ │ │ └── project.component.spec.ts # Project component test file │ │ ├── login/ # Login module │ │ │ ├── login.component.ts # Login component logic │ │ │ ├── login.component.html # Login component HTML │ │ │ ├── login.component.css # Login component CSS │ │ │ └── login.component.spec.ts # Login component test file │ │ ├── app.component.ts # Main application component logic │ │ ├── app.component.html # Main application HTML │ │ ├── app.component.css # Main application CSS │ │ ├── app.module.ts # Main module file │ │ ├── app-routing.module.ts # Routing module for navigation │ │ └── app.component.spec.ts # Application test file │ └── assets/ # Assets folder │ └── images/ # Folder for image assets │ └── logo.png # Logo image │ ├── angular.json # Angular CLI configuration file ├── package.json # Project metadata and dependencies ├── tsconfig.json # TypeScript configuration file └── README.md # Project README file
+MYANGAPP/
+├── .angular/
+├── .vscode/
+├── node_modules/
+├── public/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── client/
+│   │   │   ├── client-project/
+│   │   │   ├── designation/
+│   │   │   ├── employee/
+│   │   │   ├── layout/
+│   │   │   ├── login/
+│   │   │   ├── master/
+│   │   │   ├── roles/
+│   │   ├── model/
+│   │   ├── reusableComponent/
+│   │   ├── services/
+│   │   │   ├── employee.service.ts
+│   │   │   ├── employee.service.spec.ts
+│   │   │   ├── master.service.ts
+│   │   │   ├── master.service.spec.ts
+│   │   ├── app.component.css
+│   │   ├── app.component.html
+│   │   ├── app.component.spec.ts
+│   │   ├── app.component.ts
+│   │   ├── app.config.server.ts
+│   │   ├── app.routes.server.ts
+│   │   ├── app.routes.ts
+│   │   ├── logo.png
+│   ├── environments/
+│   ├── index.html
+│   ├── main.server.ts
+│   ├── main.ts
+│   ├── server.ts
+│   ├── styles.css
+├── .editorconfig
+├── .gitignore
+├── angular.json
+├── package.json
+├── package-lock.json
+├── tsconfig.app.json
+├── tsconfig.spec.json
+├── README.md
+
 
 
 ## Setup Instructions
